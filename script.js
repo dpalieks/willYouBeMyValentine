@@ -14,10 +14,19 @@ let yesPressed = false;
 const imagePaths = ["Img1.jpeg", "Img2.jpeg", "Img3.jpeg"];
 let currentImageIndex = 0;
 
+// Applause sound (place applause.mp3 in the same folder as index.html)
+const applauseAudio = new Audio("applause.mp3");
+applauseAudio.volume = 0.5;
+
 function showFlowers() {
   flowersMessage.classList.remove("hidden");
   yesPressed = true;
   launchBalloons();
+
+  applauseAudio.currentTime = 0;
+  applauseAudio.play().catch(() => {
+    // Ignore errors (e.g. if browser blocks autoplay)
+  });
 
   if (buttonsWrapper) {
     buttonsWrapper.style.display = "none";
